@@ -5,6 +5,11 @@ from . import db
 
 views = Blueprint("views", __name__)
 
+######################
+## func=            ##
+## home page        ##
+######################
+
 
 @views.route("/")
 @views.route("/home")
@@ -12,6 +17,11 @@ views = Blueprint("views", __name__)
 def home():
     posts = Post.query.all()
     return render_template("home.html", user=current_user, posts=posts)
+
+######################
+## func=            ##
+## create a post    ##
+######################
 
 
 @views.route("/create-post", methods=['GET', 'POST'])
@@ -30,6 +40,11 @@ def create_post():
             return redirect(url_for('views.home'))
 
     return render_template('create_post.html', user=current_user)
+
+######################
+## func=            ##
+## delete a post    ##
+######################
 
 
 @views.route("/delete-post/<id>")
@@ -62,6 +77,11 @@ def posts(username):
     posts = user.posts
     return render_template("posts.html", user=current_user, posts=posts, username=username)
 
+######################### END
+## func=                ##
+## create a new comment ##
+#########################
+
 @views.route("/create-comment/<post_id>", methods=['POST'])
 @login_required
 def create_comment(post_id):
@@ -80,5 +100,26 @@ def create_comment(post_id):
             flash('Post does not exist.', category='error')
 
     return redirect(url_for('views.home'))
+
+######################
+## func=            ##
+## delete a comment ##
+######################
+
+@views.route('/delete-comment/<comment_id>')
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.filter_by(id=comment_id).first()
+    
+    if not comment:
+        flash('Comment does not exist.', category='error')
+    elif current_user.id != comment.author and current_user.id != comment.post.author:
+        flash('you are not allowed to delete the comment.', category='error')
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+    
+        return redirect(url_for('views.home'))
+    
     
 
