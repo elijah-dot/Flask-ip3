@@ -30,6 +30,21 @@ body {
       color: green;
 
   }
+  .post{
+    background-image: url(./media/tree.jpg);
+    width: 100vw;
+    
+  }
+  .mine{
+    
+    width: 80vw;
+    height: 50vh;
+  }
+  .form1{
+    margin-left: 70px;
+  }
+
+
 
 /* .card {
     width: 80vw;
