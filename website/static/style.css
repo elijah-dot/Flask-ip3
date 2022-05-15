@@ -10,13 +10,27 @@ body {
 .section1 {
   /* background: linear-gradient(black, darkblue); */
   text-align: center;
-  height: 60vh;
+  height: 45vh;
   width: 100vw;
 }
 .one {
   color: aliceblue;
-
+  margin-top: 60px;
 }
+.one h1 {
+    color: aliceblue;
+    font-size: 50px;
+  }
+  .one {
+    color: #f0f8ff;
+    font-size: 26px;
+  }
+  #title{
+      text-decoration: none;
+      color: green;
+
+  }
+
 /* .card {
     width: 80vw;
 } */

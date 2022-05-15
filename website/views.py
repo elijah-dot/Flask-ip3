@@ -61,7 +61,7 @@ def delete_post(id):
 
     if not post:
         flash("Post does not exist.", category='error')
-    elif current_user.id != post.id:
+    elif current_user.id == post.id:
         db.session.delete(post)
         db.session.commit()
         flash('Post deleted.', category='success')
