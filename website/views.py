@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for,jsonify
+from flask import Blueprint, render_template, request, flash, redirect, url_for,jsonify,request
 from flask_login import login_required, current_user
 from .models import Post, User,Comment,Like
 from . import db
+import requests
+import json
 
 views = Blueprint("views", __name__)
 
@@ -12,11 +14,16 @@ views = Blueprint("views", __name__)
 
 
 @views.route("/")
-@views.route("/home")
+@views.route("/home",methods=["GET"])
+
 @login_required
 def home():
+    req = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
+    # data=req.content
+    data = json.loads(req.content)
+    # print(req.content)
     posts = Post.query.all()
-    return render_template("home.html", user=current_user, posts=posts)
+    return render_template("home.html", user=current_user, posts=posts,data=data)
 
 ######################
 ## func=            ##

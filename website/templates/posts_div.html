@@ -1,5 +1,12 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
+<div>
+    {% for datas in data %}
+    {{data.quote}}
+    <!-- {{data.author}} -->
+    {% endfor %}
+    
+</div>
 <h1 align="center">{% block header %}Posts{% endblock %}</h1>
 <div id="posts">
   {% for post in posts %}
@@ -9,7 +16,7 @@
 
       <div>
           {{post.likes|length}}
-        <a href="/like-post/{{post.id}}"><i class="far fa-thumbs-up"></i></a>
+        <a href="#"><i class="far fa-thumbs-up"></i></a>
         {% if user.id == post.author %}
         <div class="btn-group">
           <button
