@@ -50,6 +50,15 @@ body {
     display: flex;
     justify-content: space-evenly;
   }
+  .form2{
+    color: aliceblue;
+    margin-left: 100px;
+  }
+  .dc{
+    width: 60vw;
+
+  }
+
 
 
 
