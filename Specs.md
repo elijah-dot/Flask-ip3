@@ -1,5 +1,3 @@
-## Prerequisites
-Python3.8
 
 
 ## Behaviour Driven Development
