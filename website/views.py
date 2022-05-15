@@ -133,5 +133,7 @@ def delete_comment(comment_id):
 
     return redirect(url_for('views.home'))
 
+
+
     
 
