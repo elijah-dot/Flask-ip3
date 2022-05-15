@@ -1,6 +1,10 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
-<div>
+<link rel="stylesheet" href="static/style.css">
+<div class="section1">
+    <h1>VOICE</h1>
+
+
     {% for datas in data %}
     {{data.quote}}
     <!-- {{data.author}} -->
