@@ -43,6 +43,13 @@ body {
   .form1{
     margin-left: 70px;
   }
+  .mn{
+    color: aliceblue;
+  }
+  .ab{
+    display: flex;
+    justify-content: space-evenly;
+  }
 
 
 

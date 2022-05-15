@@ -25,6 +25,23 @@ def home():
     posts = Post.query.all()
     return render_template("home.html", user=current_user, posts=posts,data=data)
 
+@views.route("/delete-post/<id>")
+@login_required
+def delete_post(id):
+    post = Post.query.filter_by(id=id).first()
+
+    if not post:
+        flash("Post does not exist.", category='error')
+    # elif current_user.id == post.id:
+    #     flash('You do not have permission to delete this post.', category='error')
+    else:
+        db.session.delete(post)
+        db.session.commit()
+        flash('Post deleted.', category='success')
+
+    return redirect(url_for('views.home'))
+
+
 ######################
 ## func=            ##
 ## create a post    ##
@@ -54,23 +71,21 @@ def create_post():
 ######################
 
 
-@views.route("/delete-post/<id>")
-@login_required
-def delete_post(id):
-    post = Post.query.filter_by(id=id).first()
+# @views.route("/delete-post/<id>")
+# @login_required
+# def delete_post(id):
+#     post = Post.query.filter_by(id=id).first()
 
-    if not post:
-        flash("Post does not exist.", category='error')
-    elif current_user.id == post.id:
-        db.session.delete(post)
-        db.session.commit()
-        flash('Post deleted.', category='success')
+#     if not post:
+#         flash("Post does not exist.", category='error')
+#     elif current_user.id != post.id:
+#         flash('You do not have permission to delete this post.', category='error')
+#     else:
+#         db.session.delete(post)
+#         db.session.commit()
+#         flash('Post deleted.', category='success')
 
-    else:
-        flash('You do not have permission to delete this post.', category='error')
-        
-    return redirect(url_for('views.home'))
-
+#     return redirect(url_for('views.home'))
 
 @views.route("/posts/<username>")
 @login_required
@@ -113,21 +128,20 @@ def create_comment(post_id):
 ## delete a comment ##
 ######################
 
-@views.route('/delete-comment/<comment_id>')
+@views.route("/delete-comment/<comment_id>")
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
-    
+
     if not comment:
         flash('Comment does not exist.', category='error')
     elif current_user.id != comment.author and current_user.id != comment.post.author:
-        flash('you are not allowed to delete the comment.', category='error')
+        flash('You do not have permission to delete this comment.', category='error')
     else:
         db.session.delete(comment)
         db.session.commit()
-    
-        return redirect(url_for('views.home'))
-    
+
+    return redirect(url_for('views.home'))
 # @views.route("/like-post/<post_id>", methods=['POST'])
 # @login_required
 # def like(post_id):

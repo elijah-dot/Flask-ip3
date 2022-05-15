@@ -1,18 +1,22 @@
 {% extends 'base.html'%}
 {% block title %}home{% endblock %}
 {% block content %}
-<h1 align="center">create_post page</h1>
+<h1 align="center" class="mn">create_post page</h1>
 
 <form class="form1" method="POST">
-    <textarea  name="text" id="text" class="form-control mine" placeholder="write your Blog here" > </textarea>
+    <textarea  name="text" id="text" class="form-control mine" placeholder='write your blog here' ></textarea>
     <br>
-    <div align="center">
-        <button type="submit" class="btn btn-lg btn-primary">Post</button>
+    <div class="ab">
+        <div align="center">
+            <button type="submit" class="btn btn-lg btn-success">Post</button>
+    
+        </div>
+        <br>
+        <div align="center">
+            <a href="/home"><button type="submit" class="btn btn-lg btn-danger">Back</button></a>
+    
+        </div>
 
-    </div>
-    <br>
-    <div align="center">
-        <a href="/home"><button type="submit" class="btn btn-lg btn-secondary">Back</button></a>
 
     </div>
 
