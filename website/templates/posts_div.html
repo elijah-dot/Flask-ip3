@@ -9,7 +9,7 @@
 
       <div>
           {{post.likes|length}}
-        <i class="far fa-thumbs-up"></i>
+        <a href="/like-post/{{post.id}}"><i class="far fa-thumbs-up"></i></a>
         {% if user.id == post.author %}
         <div class="btn-group">
           <button
