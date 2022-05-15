@@ -1,4 +1,22 @@
-.section1{
-    background-color: chartreuse;
-    
+* {
+  margin: 0;
+  padding: 0;
 }
+body {
+  background-image: url(./media/green.jpg);
+  width: 100vw;
+}
+
+.section1 {
+  /* background: linear-gradient(black, darkblue); */
+  text-align: center;
+  height: 60vh;
+  width: 100vw;
+}
+.one {
+  color: aliceblue;
+
+}
+/* .card {
+    width: 80vw;
+} */
